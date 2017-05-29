@@ -1,7 +1,7 @@
 /**
  * Created by Erin on 2017/5/28.
  */
-//import {$,jQuery} from 'jquery';
+//import $ from 'jquery';
 require( "./jQuery.calendar");
 
 $("#trigger").calendar({

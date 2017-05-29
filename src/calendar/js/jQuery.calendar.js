@@ -1,80 +1,6 @@
-/******/ (function(modules) { // webpackBootstrap
-/******/ 	// The module cache
-/******/ 	var installedModules = {};
-/******/
-/******/ 	// The require function
-/******/ 	function __webpack_require__(moduleId) {
-/******/
-/******/ 		// Check if module is in cache
-/******/ 		if(installedModules[moduleId]) {
-/******/ 			return installedModules[moduleId].exports;
-/******/ 		}
-/******/ 		// Create a new module (and put it into the cache)
-/******/ 		var module = installedModules[moduleId] = {
-/******/ 			i: moduleId,
-/******/ 			l: false,
-/******/ 			exports: {}
-/******/ 		};
-/******/
-/******/ 		// Execute the module function
-/******/ 		modules[moduleId].call(module.exports, module, module.exports, __webpack_require__);
-/******/
-/******/ 		// Flag the module as loaded
-/******/ 		module.l = true;
-/******/
-/******/ 		// Return the exports of the module
-/******/ 		return module.exports;
-/******/ 	}
-/******/
-/******/
-/******/ 	// expose the modules object (__webpack_modules__)
-/******/ 	__webpack_require__.m = modules;
-/******/
-/******/ 	// expose the module cache
-/******/ 	__webpack_require__.c = installedModules;
-/******/
-/******/ 	// identity function for calling harmony imports with the correct context
-/******/ 	__webpack_require__.i = function(value) { return value; };
-/******/
-/******/ 	// define getter function for harmony exports
-/******/ 	__webpack_require__.d = function(exports, name, getter) {
-/******/ 		if(!__webpack_require__.o(exports, name)) {
-/******/ 			Object.defineProperty(exports, name, {
-/******/ 				configurable: false,
-/******/ 				enumerable: true,
-/******/ 				get: getter
-/******/ 			});
-/******/ 		}
-/******/ 	};
-/******/
-/******/ 	// getDefaultExport function for compatibility with non-harmony modules
-/******/ 	__webpack_require__.n = function(module) {
-/******/ 		var getter = module && module.__esModule ?
-/******/ 			function getDefault() { return module['default']; } :
-/******/ 			function getModuleExports() { return module; };
-/******/ 		__webpack_require__.d(getter, 'a', getter);
-/******/ 		return getter;
-/******/ 	};
-/******/
-/******/ 	// Object.prototype.hasOwnProperty.call
-/******/ 	__webpack_require__.o = function(object, property) { return Object.prototype.hasOwnProperty.call(object, property); };
-/******/
-/******/ 	// __webpack_public_path__
-/******/ 	__webpack_require__.p = "";
-/******/
-/******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 1);
-/******/ })
-/************************************************************************/
-/******/ ([
-/* 0 */
-/***/ (function(module, exports, __webpack_require__) {
 
-"use strict";
-
-
-;(function ($, window) {
-    $.fn.calendar = function (options) {
+;( function ( $, window ) {
+    $.fn.calendar = function(options) {
         //check is select, if nothing select, return this
         if (!this.length) {
             if (options && options.debug && window.console) {
@@ -109,7 +35,7 @@
         calendarDiv += '<div id="last-month" style="position:absolute;left:60px;"><<</div>';
         calendarDiv += '<div id="next-year" style="position:absolute;right:30px;">></div>';
         calendarDiv += '<div id="next-month" style="position:absolute;right:60px;">>></div>';
-        calendarDiv += '<input style="width:40px;text-align:center;" type="text" id="calendar_year" value="' + _date.year + '">-<input style="width:25px;text-align:center;" type="text" id="calendar_month" value="' + _date.month + '"></div>';
+        calendarDiv += '<input style="width:40px;text-align:center;" type="text" id="calendar_year" value="' + _date.year + '">-<input style="width:25px;text-align:center;" type="text" id="calendar_month" value="' + _date.month + '"></div>'
         calendarDiv += '<div id="calendar_week_box" class="cld_week_box clearfix">';
         calendarDiv += '<div class="header-day" data-index = "0">日</div>';
         calendarDiv += '<div class="header-day" data-index = "1">一</div>';
@@ -128,31 +54,29 @@
 
         var calendarAction = {
             //initialization
-            initAction: function initAction() {
+            initAction: function() {
                 //calendarAction.thisClick();
                 calendarAction.inputChange();
                 calendarAction.buttonChange();
                 calendarAction.chooseDate();
             },
 
-            onWindowResize: function onWindowResize() {},
-
             //click to display
-            thisClick: function thisClick() {
-                self.bind(defaults.eventName, function (e) {
+            thisClick: function() {
+                self.bind(defaults.eventName, function(e) {
                     calendarAction.showCalendar();
                 });
             },
             //when year and month in the input box changes
-            inputChange: function inputChange() {
-                $('#calendar_year, #calendar_month').bind('change', function () {
+            inputChange: function() {
+                $('#calendar_year, #calendar_month').bind('change', function() {
                     var year = $('#calendar_year').val(),
                         month = $('#calendar_month').val();
                     if (!/^\d{4}$/.test(year)) {
                         alert('please input four-digit year');
                         return false;
                     }
-                    if (!/^\d{1,2}$/.test(month) || month > 12 || month <= 0) {
+                    if (!/^\d{1,2}$/.test(month) || (month > 12 || month <= 0)) {
                         alert('please input proper month');
                         return false;
                     }
@@ -161,25 +85,25 @@
                 });
             },
             //click to change year and month
-            buttonChange: function buttonChange() {
-                $('#last-year').bind('click', function () {
+            buttonChange: function() {
+                $('#last-year').bind('click', function() {
                     var lastYear = parseInt($('#calendar_year').val()) - 1 > 0 ? parseInt($('#calendar_year').val()) - 1 : 1;
                     $('#calendar_year').val(lastYear);
                     init_day_numbers(lastYear, $('#calendar_month').val());
                 });
-                $('#last-month').bind('click', function () {
+                $('#last-month').bind('click', function() {
                     var lastMonth = parseInt($('#calendar_month').val()) - 1 > 0 ? parseInt($('#calendar_month').val()) - 1 : 12,
                         thisYear = lastMonth == 12 ? parseInt($('#calendar_year').val()) - 1 : $('#calendar_year').val();
                     $('#calendar_month').val(lastMonth);
                     $('#calendar_year').val(thisYear);
                     init_day_numbers(thisYear, lastMonth);
                 });
-                $('#next-year').bind('click', function () {
+                $('#next-year').bind('click', function() {
                     var nextYear = parseInt($('#calendar_year').val()) + 1;
                     $('#calendar_year').val(nextYear);
                     init_day_numbers(nextYear, $('#calendar_month').val());
                 });
-                $('#next-month').bind('click', function () {
+                $('#next-month').bind('click', function() {
                     var nextMonth = parseInt($('#calendar_month').val()) + 1 <= 12 ? parseInt($('#calendar_month').val()) + 1 : 1,
                         thisYear = nextMonth == 1 ? parseInt($('#calendar_year').val()) + 1 : $('#calendar_year').val();
                     $('#calendar_month').val(nextMonth);
@@ -188,7 +112,7 @@
                 });
             },
             //set the relative offset between control and webpage, then display
-            showCalendar: function showCalendar() {
+            showCalendar: function() {
                 var o_x = self.offset().left,
                     o_y = self.offset().top + self[0].offsetHeight;
                 $('#calendar').css({
@@ -199,12 +123,12 @@
                 });
             },
             //close plugin
-            closeCalendar: function closeCalendar() {
+            closeCalendar: function() {
                 $('#calendar').hide();
             },
             //select date
-            chooseDate: function chooseDate() {
-                $('.day').live('click', function () {
+            chooseDate: function() {
+                $('.day').live('click', function() {
                     var _date = $(this).attr('data-date');
                     //trigger callback function
                     if ($.isFunction(defaults.onSelectDate)) {
@@ -219,7 +143,7 @@
 
         //write calendar template in webpage
         $(defaults.container).append(calendarDiv);
-
+        setWidth();
         function setWidth() {
             $(".cld_grid").width(options.width);
         }
@@ -230,8 +154,7 @@
         calendarAction.initAction();
         function init_day_numbers(year, month) {
             var maxday = getmaxDay(year, month),
-                firstWeek,
-                beforeNumber,
+                firstWeek,beforeNumber,
                 startIndex = beforeNumber = firstWeek = getFirstWeek(year, month),
                 afterNumber = 35 - maxday - beforeNumber,
                 lastMonthMaxDay = getMaxDayByLastMonth(year, month),
@@ -313,29 +236,5 @@
             }
             return _list;
         }
-    };
-})(jQuery, window);
-
-/***/ }),
-/* 1 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-/**
- * Created by Erin on 2017/5/28.
- */
-//import {$,jQuery} from 'jquery';
-__webpack_require__(0);
-
-$("#trigger").calendar({
-    container: "#trigger",
-    width: "100%",
-    onSelectDate: function onSelectDate(_date) {
-        console.log(_date + " clicked. you can do something when the day selected.");
     }
-});
-
-/***/ })
-/******/ ]);
+} )( jQuery, window );
