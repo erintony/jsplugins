@@ -11,6 +11,8 @@
         var self = $(this);
         // default parameter setting
         var defaults = {
+            container: "body",
+            width: "300px",
             cssPath: '', //user-define loading path of css file
             eventName: 'click', //user-define the event name that triggers the control
             onSelectDate: null, //callback function after select date
@@ -27,7 +29,7 @@
             week: d_date.getDay()
         };
         //default template of plugin
-        var calendarDiv = '<div id="calendar" class="cld_grid" style="display:none;z-index:100;">';
+        var calendarDiv = '<div id="calendar" class="cld_grid" style="z-index:100;">';
         calendarDiv += '<div id="calendar_year_month" class="cld_year_month" style="position:relative;">';
         calendarDiv += '<div id="last-year" style="position:absolute;left:30px;"><</div>';
         calendarDiv += '<div id="last-month" style="position:absolute;left:60px;"><<</div>';
@@ -44,18 +46,25 @@
         calendarDiv += '<div class="header-day" data-index = "6">六</div>';
         calendarDiv += '</div>';
         calendarDiv += '<div class="days clearfix">';
+
         for (var k = 0; k < 35; k++) {
             calendarDiv += '<div class="day"><span class="day-number">' + '' + '</span></div>';
         }
         calendarDiv += '</div></div>';
+
         var calendarAction = {
             //initialization
             initAction: function() {
-                calendarAction.thisClick();
+                //calendarAction.thisClick();
                 calendarAction.inputChange();
                 calendarAction.buttonChange();
                 calendarAction.chooseDate();
             },
+
+            onWindowResize: function() {
+
+            },
+
             //click to display
             thisClick: function() {
                 self.bind(defaults.eventName, function(e) {
@@ -135,8 +144,13 @@
                 });
             }
         };
+
         //write calendar template in webpage
-        $('body').append(calendarDiv);
+        $(defaults.container).append(calendarDiv);
+
+        function setWidth() {
+            $(".cld_grid").width(options.width);
+        }
 
         //initialize the year, month, day of calendar list
         init_day_numbers(_date.year, _date.month);
