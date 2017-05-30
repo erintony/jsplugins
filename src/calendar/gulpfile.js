@@ -11,9 +11,10 @@ gulp.task('default',function() {
     });
 
     //gulp.run('sass');
+    gulp.watch('./css/*.scss', ['sass']);
 
-    gulp.task('sass:watch', function () {
-        gulp.watch('./css/*.scss', ['sass']);
-    });
+    /*gulp.task('sass:watch', function () {
+        gulp.watch('./css/!*.scss', ['sass']);
+    });*/
 
 });
