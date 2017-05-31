@@ -1,0 +1,38 @@
+*{margin:0;padding:0;font-size:12px;font-family: Inconsolata, Monaco, 'Andale Mono', Courier;}
+.cld_grid{margin:auto;}
+.cld_week_box{background-color:#3883a3;width:100%;}
+.header-day{float: left;padding: 10px 0px;width: 14.2857%;text-align: center;color: white;font-family:'微软雅黑'}
+.clearfix:after{content: ".";display: block;clear: both;visibility: hidden;line-height: 0;height: 0;}
+.day{float: left;
+    width: 14.2857%;
+    height: 13px;
+    padding: 10px 0;
+    text-align: center;
+    color: #4f4f4f;
+    background-color: #ebebeb;
+    border-bottom: 2px solid white;
+    background-image: url('http://kylestetz.github.io/CLNDR/css/./triangle.svg');
+    background-size: cover;
+    background-position: center;
+    cursor: pointer;
+}
+.days .last-month, .days .next-month {
+    opacity: 0.3;
+}
+.days .today{
+    background:#fff;
+}
+.cld_year_month{
+    padding: 10px;
+    background-color: #71bbd2;
+    text-align: center;
+    color: white;
+    letter-spacing: 1px;
+    font-size:14px;
+}
+.cld_year_month div{cursor:pointer;}
+
+
+#trigger {
+    width:100%;
+}

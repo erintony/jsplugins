@@ -1,0 +1,145 @@
+$week_box_bg : #3883a3;
+$day_font: #4f4f4f;
+$day_bg: #ebebeb;
+$today_bg: #E4F6E9;
+$cucrent_bg: #E4F6E9;
+$year_month_bg: #ebebeb;
+$year_month: #B0B0B0;
+$head: #38BB90;
+$border: rgba(76, 76, 76, 0.65);
+$cld_bg: #fff;
+
+.cld_grid {
+  min-width: 450px;
+  margin:0;
+  padding:0;
+  border: solid 1px $border;
+  border-radius: 5px;
+  font-size:1em;
+  font-family: Inconsolata, Monaco, 'Andale Mono', Courier;
+}
+
+.cld_week_box {
+  width:100%;
+  /*background-color: $week_box_bg;*/
+  border-bottom: solid 1px $border;
+}
+.header-day {
+  float: left;
+  margin-right: -1px;
+  padding: 10px 0px;
+  width: 14.2857%;
+  text-align: center;
+  color: $head;
+  font-family:'微软雅黑';
+  border-right: solid 1px $border;
+}
+
+.clearfix:after {
+  content: ".";
+  display: block;
+  clear: both;
+  visibility: hidden;
+  line-height: 0;
+  height: 0;
+}
+
+.day {
+  float: left;
+  width: 14.2857%;
+  height: 13px;
+  padding: 10px 0;
+  margin-right: -1px;
+  text-align: center;
+  color: $day_font;
+ /* background-color: $day_bg;*/
+  border-bottom: solid 1px $border;
+ /* background-image: url('http://kylestetz.github.io/CLNDR/css/./triangle.svg');
+  background-size: cover;*/
+  background-position: center;
+  cursor: pointer;
+  border-right: solid 1px $border;
+
+  .last-month, .next-month {
+    opacity: 0.3;
+  }
+}
+
+.day.current {
+  background-color: $cucrent_bg;
+  margin-left: 1px;
+  margin-right: -2px;
+}
+
+.day.today{
+  background-color: $today_bg;
+  margin-left: 1px;
+  margin-right: -2px;
+}
+
+.cld_year_month{
+  margin-bottom: -1px;
+  padding-top: 10px;
+  background-color: $cld_bg;
+  text-align: center;
+  color: $year_month;
+  letter-spacing: 1px;
+  font-size:14px;
+  font-weight: bold;
+  border-radius: 5px;
+
+  div {
+    cursor:pointer;
+  }
+
+  .current-date {
+    padding-bottom: 5px;
+    color: $head;
+    font-size: 1em;
+    font-weight: bold;
+    border-bottom: solid 1px $border;
+  }
+
+  #last-year {
+    position: absolute;
+    left: 36%;
+  }
+
+  #last-month {
+    position: absolute;
+    left: 40%;
+  }
+
+  #next-year {
+    position: absolute;
+    right: 36%;
+  }
+
+  #next-month {
+    position: absolute;
+    right: 40%;
+  }
+
+}
+
+@media screen and (max-width: 768px) {
+  #last-year {
+    position: absolute;
+    left: 30%;
+  }
+
+  #last-month {
+    position: absolute;
+    left: 35%;
+  }
+
+  #next-year {
+    position: absolute;
+    right: 30%;
+  }
+
+  #next-month {
+    position: absolute;
+    right: 35%;
+  }
+}
