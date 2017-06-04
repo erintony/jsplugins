@@ -1,0 +1,93 @@
+<!DOCTYPE>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.11.1.min.js"></script>
+	<script language="JavaScript" type="text/javascript" src="jCal.js"></script>
+	<link rel="stylesheet" type="text/css" href="jCal.css">
+
+	<script>
+		$(document).ready(function () {
+			$('#calOne').jCal({
+				day:			new Date(),
+				days:			1,
+				showMonths:		2,
+				monthSelect:	true,
+				drawBack:		function () {
+						return false;
+					},
+				dCheck:			function (day) {
+						if ( day.getTime() == (new Date('8/7/2008')).getTime() )
+							return 'invday';
+						else if (day.getDate() != 3)
+							return 'day';
+						else
+							return 'invday';
+					},
+				callback:		function (day, days) {
+				    	console.dir(day);
+                   		 console.dir(days);
+						$('#calOneDays').val( days );
+						$(this._target).find('.dInfo').remove();
+						var dCursor = new Date( day.getTime() );
+						for (var di=0; di < days; di++) {
+							var currDay = $(this._target).find('[id*=d_' + ( dCursor.getMonth() + 1 ) + '_' + dCursor.getDate() + '_' + dCursor.getFullYear() + ']');
+							if (currDay.length) currDay.append('<div class="dInfo"><span style="color:#ccc">$</span>1231</div>');
+							dCursor.setDate( dCursor.getDate() + 1 );
+						}
+						// if calling the function on already selected day(s)
+						if ( typeof $(this._target).data('day') == 'object' &&
+							 $(this._target).data('day').getTime() == day.getTime() &&
+							 $(this._target).data('days') == days ) {
+							$('#calOneResult').append('<div style="clear:both; font-size:7pt;">' + days + ' days starting ' +
+								( day.getMonth() + 1 ) + '/' + day.getDate() + '/' + day.getFullYear() + ' RECLICKED</div>');
+						} else {
+							$('#calOneResult').append('<div style="clear:both; font-size:7pt;">' + days + ' days starting ' +
+								( day.getMonth() + 1 ) + '/' + day.getDate() + '/' + day.getFullYear() + '</div>');
+						}
+						return true;
+					}
+				});
+		});
+	</script>
+
+	<style>
+		.dInfo {
+			font-family:tahoma;
+			font-size:7pt;
+			color:#fff;
+			padding-top:1px;
+			padding-bottom:1px;
+			background:rgb(0, 102, 153);
+		}
+	</style>
+
+</head>
+<body marginheight=0 marginwidth=0 topmargin=0 rightmargin=0 leftmargin=0>
+
+<table>
+	<tr>
+		<td align=left valign=top style="padding:10px; background:#E3E3E3;">
+			<strong>Two Month Demo</strong><br>
+			<!--Select Number of Days
+			<select id="calOneDays" onChange="$('#calOne').data('days', $('#calOneDays').val());">
+				<option value="1" SELECTED>1</option><option value="2">2</option><option value="3">3</option>
+				<option value="4" >4</option><option value="5">5</option><option value="6">6</option>
+				<option value="7">7</option><option value="8">8</option><option value="9">9</option>
+				<option value="10">10</option><option value="11">11</option><option value="12">12</option>
+			</select>-->
+		</td>
+	</tr>
+	<tr>
+		<td align=left id="calOne" valign=top style="padding:10px; background:#E3E3E3;">
+			loading calendar one...
+		</td>
+
+	</tr>
+	<tr>
+		<td align=left id="calOneResult" valign=top style="padding:10px; background:#E3E3E3;"></td>
+	</tr>
+</table>
+
+</body>
+</html>
