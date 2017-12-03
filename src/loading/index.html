@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>加载框</title>
+
+    <link rel="stylesheet" type="text/css" href="./out/index.css" />
+</head>
+<body>
+
+<!--<div class="loading-float" >
+    <div class="loading-inner">
+        <div class="loading-container">
+            <div class="loading-ball loading-ball-triangle-path">
+                <div></div>
+                <div></div>
+                <div></div>
+            </div>
+        </div>
+
+        <div class="loading-title">
+            <span>数据加载中...</span>
+        </div>
+    </div>
+</div>-->
+
+</body>
+
+<script type="text/javascript" src="../common/js/jquery-3.2.1.js"></script>
+<script type="text/javascript" src="js/loading.js"></script>
+
+<script type="text/javascript">
+    $('body').Loading({
+        type: 'pulse', //支持pulse  multiple  triangle  加载类型
+    });
+
+</script>
+</html>

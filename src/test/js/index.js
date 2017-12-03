@@ -1,0 +1,1 @@
+import  JQuery from 'jquery';

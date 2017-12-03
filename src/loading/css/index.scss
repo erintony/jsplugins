@@ -1,0 +1,182 @@
+$loadingColor : #008aff;
+
+@keyframes ball-clip-rotate-pulse-scale {
+   0%, 100% {
+     opacity: 1;
+     transform: translate(-50%, -50%) scale(1);
+   }
+
+  30% {
+    opacity: .3;
+    transform: translate(-50%, -50%) scale(.15);
+  }
+}
+
+@keyframes ball-clip-rotate-multiple-rotate {
+  0% {
+    transform: translate(-50%, -50%) rotate(0deg);
+  }
+
+  50% {
+    transform: translate(-50%, -50%) rotate(180deg);
+  }
+
+  100% {
+    transform: translate(-50%, -50%) rotate(360deg);
+  }
+}
+
+@keyframes ball-clip-triangle-path-one {
+  0%, 100% {
+    transform: translate(0%, 220%);
+  }
+
+  17%, 50%, 83% {
+    opacity: .25;
+  }
+
+  33% {
+    opacity: 1;
+    transform: translate(110%, 0%);
+  }
+
+  66% {
+    opacity: 1;
+    transform: translate(220%, 220%);
+  }
+
+}
+
+@keyframes ball-clip-triangle-path-two {
+  0%, 100% {
+    transform: translate(110%, 0%);
+  }
+
+  17%, 50%, 83% {
+    opacity: .25;
+  }
+
+  33% {
+    opacity: 1;
+    transform: translate(220%, 220%);
+  }
+
+  66% {
+    opacity: 1;
+    transform: translate(0%, 220%);
+  }
+
+}
+
+@keyframes ball-clip-triangle-path-three {
+  0%, 100% {
+    transform: translate(220%, 220%);
+  }
+
+  17%, 50%, 83% {
+    opacity: .25;
+  }
+
+  33% {
+    opacity: 1;
+    transform: translate(0%, 220%);
+  }
+
+  66% {
+    opacity: 1;
+    transform: translate(110%, 0%);
+  }
+
+}
+
+
+.loading-float {
+  position: fixed;
+  top: 30%;
+  left:50%;
+  padding: 7px 12px 50px 12px;
+  width: 250px;
+  height: 180px;
+  text-align: center;
+  transition: all 250ms linear;
+  /*animation-play-state: paused;*/
+  transform: translate(-50%, -50%);
+  border-radius: 4px;
+  background-color: #fff;
+  box-shadow: 0 0 1em rgba(0, 0, 0, .2);
+  font-family: '微软雅黑 Light';
+  z-index: 10000;
+
+  .loading-ball > div {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    color: $loadingColor;
+    border: 4px solid $loadingColor;
+    background: transparent;
+    border-right-color: transparent;
+    border-left-color: transparent;
+    border-radius: 100%;
+    animation: ball-clip-rotate-multiple-rotate 1s ease-in-out infinite;
+  }
+
+  .loading-ball-clip-rotate-multiple > div:first-child,
+  .loading-ball-clip-rotate-pulse > div:first-child {
+    width: 64px;
+    height: 64px;
+  }
+
+  .loading-ball-clip-rotate-multiple > div:last-child,
+  .loading-ball-clip-rotate-pulse > div:last-child {
+    width: 32px;
+    height: 32px;
+  }
+
+  .loading-ball-clip-rotate-multiple > div:last-child {
+    animation-direction: reverse;
+  }
+
+  .loading-ball-clip-rotate-pulse > div:last-child {
+    border: 0 solid $loadingColor;
+    background-color: $loadingColor;
+    animation: ball-clip-rotate-pulse-scale 1s cubic-bezier(.09, .57, .49, .0) infinite;
+  }
+
+  .loading-ball-triangle-path > div {
+    top: 24%;
+    left: 35%;
+    width: 20px;
+    height: 20px;
+    -webkit-border-radius: 100%;
+    -moz-border-radius: 100%;
+    border-radius: 100%;
+    background-color: $loadingColor;
+  }
+
+  .loading-ball-triangle-path > div:nth-child(1) {
+    animation: ball-clip-triangle-path-one 2s ease-in-out infinite;
+  }
+
+  .loading-ball-triangle-path > div:nth-child(2) {
+    animation: ball-clip-triangle-path-two 2s ease-in-out infinite;
+  }
+
+  .loading-ball-triangle-path > div:nth-child(3) {
+    animation: ball-clip-triangle-path-three 2s ease-in-out infinite;
+  }
+
+}
+
+.loading-title {
+  color: $loadingColor;
+}
+
+
+.loading-inner {
+  position: relative;
+  display: flex;
+  width: 100%;
+  height: 100%;
+  justify-content: center;
+  align-items: center;
+}
